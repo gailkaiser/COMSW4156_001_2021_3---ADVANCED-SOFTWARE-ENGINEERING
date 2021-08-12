@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+
+#gametags{
+    position:absolute;
+    left: 30%;
+}
+
+.options{
+    width: 30%;
+    height: 3em;
+}
+
+.board{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 600px;
+    height: 520px;
+    top: 9rem;
+    background: rgb(87, 168, 255);
+    border: 2px solid black;
+    padding: .5rem;
+    box-shadow: 5px 10px #888888;
+
+}
+
+.slot{
+    width: 90px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}

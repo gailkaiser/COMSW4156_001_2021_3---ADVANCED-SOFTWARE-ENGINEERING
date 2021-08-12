@@ -1,0 +1,129 @@
+Setup + Assignment 1 (Endpoint implementation)
+
+Downloadiong Visual Studio:
+https://code.visualstudio.com/download 
+
+Visual Studio code is a really popular IDE that can support a wide vareity of languages and libraries with simple clicks of a button.
+Use the link above to download based on your device.
+
+Once Visual Studio Code has been installed on your computer we need to install the latest version of Python if you haven't already done so.
+the following link will take you to the official Pythoin site: https://www.python.org/downloads/
+
+When you click download, the installer will have a checkbox asking if it should "Add Python 3.9 to Path" make sure it is checked.
+Verify the installation work by opening up command prompt or terminal and typing in "python" this will show you the current version of Python if installed correctly.
+to exit the python shell use "exit()"
+
+Once Python is installed and working we are going to add a Python Extension to visual Studio what will have most of the functionalities we will ever need for these
+assignments. In visual Studio on the left side bar there is a button that is made out of 4 squares (right beneath the play/debig button) click that button and 
+in the search bar type "python" Most likely there is going to be an extension called "Python" as the very first result and the creator of is it microsoft.
+Add the extension and reload Visual studio Code.
+
+Now we need to download some libraries.
+
+In your terminal of choice enter the command "pip install flask", "pip install coverage", and "python -m pip install flake8". 
+This will install the packages needed to use flask endpoints, check code coverage of unit testing, and help us spot bugs.
+
+Now for the actual assignment. For part 1 We are going to implement the game Connect 4. The idea is we want two players to connect to our Flask Project and
+begin playing with the hopes that one player wins. The Rules are as Follows:
+
+1. The game can not begin until two players have connected.
+2. Player 1 always starts first
+3. Players will take turns making their moves and can not make a move during another players turns.
+4. The first person to connect 4 tokens in a row in any direction (Vertically, horizontally, or diagonally) ones the game.
+5. If all spaces are used up the game is a draw.
+
+Start off by cloning the assignment reposotory from https://github.com/Programming-Systems-Lab/4156-PublicAssignment/
+To open the assignment in Visual Studio Code in the left side bar there is a button that looks like 2 pages. Click on that button and select "add Folder"
+then find go to the location where you cloned the repo and click on the "skeleton" folder. The skeleton folder is where the startercode for all of your assignments will be located. Once you open the skeleton folder in visual studio this will allow you to switch through multiple files quickly as the project workspace gets bigger.
+
+What you need to implement:
+There are some endpoints that have been defined for you and your job is to implement them to complete the functionality of the game.
+All of the inputs are in app.py. You also need to implement the Gameboard.py class that will help you start and keep track of what is happening in the game.
+Besides app.py and Gameboard.py do not modify any other files. Do not modify any given skeleton code or imports. You are welcome to import additional libraries
+if needed but the entire Assignment can be completed with what has already been given.
+
+GameBoard.py:
+The constructor for the Gameboard class is already given. When implementing your game you should use all of instance variables declared.
+
+Endpoints in app.py that must be implemented:
+updateAllBoards endpoint allows both players to see the actions of the other so do not modify this endpoint
+
+endpoint "/": This is the initial webpage of the game. When a user accesses this endpoint you should initialize a new game.
+the template you need to render is 'player1_connect.html' which should also have its status set to: status = 'Pick a Color.'
+
+endpoint /p1color: This is the endpoint where the serverside will send the backend the color that p1 wants to be for the game. It will send the information via
+HTTP arguments and the string will be either "red" or "yellow" Set p1 in your backend to whatever color the user decideds.
+template needed to render to 'player1_connect.html', and set status to whatever color p1 picked
+
+endpoint /p2Join: This endpoint handles the joining of player2 set player 2's color and the return endpoint should be 'p2Join.html' abd the status should be set
+to player 2's color
+
+endpoint /move1: The frontend will send a POST request with the attempted move of player1. The POST request will send a JSON object in the form {'column' : 'col#'} where col# can be col1 - col6. Your job is to verify that it is a valid move, and update your backend
+board to match the frontend board. If the move is invalid (user tried to insert into a filled column or make a move when it wasn't their turn) return in the following format:
+
+jsonify(move=<current_board>, invalid = True, reason = <Why this is invalid>, winner = <current_winner>).
+Note current winner can be p1, p2, or "" (if no winner).
+
+If the move is a success then instead return in the form:
+jsonify(move=<game_board>, invalid=False, winner=<current_winner>)
+
+endpoint move2/: Same as move1 but for player2 instead
+-------------------------------------------------------------------------------------------
+
+Assignment 2: Testing and coverage
+
+In this part you are going to write test methods to verify that the code you wrote in the pervious parts of your assignment fully work as intended.
+Within the same Directory as app.py create python test files for each python class (not including app.py). So if you implemented part1 using only Gameboard.py
+then you would only need to make one file test_Gameboard.py. If you have another py file called foo.py then you would also need to make a seperate test file for
+it called test_foo.py
+
+Once you create these files import unittest. It should already come with visual studio so no need for pip installing anything.
+
+Next you need to define a test class. Using test_Gameboard.py as an example the way to implement the class would be as follows:
+"class Test_TestGameboard(unittest.TestCase):"
+
+within this class definition is where you will create your test methods to verify that 1 they work and catch edge cases as intended, and 2 your implementation
+covers as many branches as possible.
+
+To test your classes use the keyboard shortcut "Ctrl + shift + P" for windows or "cmd+shift+P" on Mac to bring up the command Palette.
+Enter "Python: Configure Tests" and select unittest. You will then be prompted to select the directory of where your tests are located and finally you need to
+choose "test_*.py" option because your file names should have the form test_<name of file>.py
+
+This will allow you to invidually test methods without having to wait for all of them to be tested.
+To test all methods and to view coverage do the following.
+
+1. python <name of test file> will run your test file and tell you how many passed
+2. In terminal enter "coverage run -m unittest discover". This will run all tests and figure out the coverage.
+3. enter "coverage html" this will generate a folder called htmlcov which will generate an html file for every test file you created. Open the html file in browser
+by double clicking. The html page will highlight in red which lines of code haven't been hit and give you a percent of how much of the file has been tested.
+You want this number to be as close to 100% as possible.
+
+Finally we need to test bugs. To do this we are going to use flake8. open up command palette again in Visual Studio Code "Ctrl + shift + P" for Windows or "cmd+shift+P" on Mac. Enter "lint" and select "Python: Select Linter" and then select flake8. To run flake8 make sure you are in the project directory
+and enter the command "flake8 > bugs.txt" this will run flake8 on all python files and then output the results into a txt called bugs.txt.
+This bugs.txt file will identify all of the lines and files that have potential bugs in them and tell you what is causing the issue.
+
+A correct implementation will create a blank bugs.txt file since there would be no bugs
+
+Documentation for coverage and flake8 if you are interested:
+https://coverage.readthedocs.io/en/coverage-5.5/ 
+https://flake8.pycqa.org/en/latest/
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Assignment 3: Database
+
+The last part of the project is to incorportate a database such that if the game closes for any reason, you can pick and from where you left off.
+In db.py you are already given code that Init's the database table and one that completely deletes it. It is up to you to implement the add() and the getMove()
+methods.
+
+The database takes has 6 columns. (current_turn, board, winner, player1, player2, remaining_moves) in that respective order. All columns are type TEXT besides
+remaining_moves which is type INT.
+
+When a game starts a it should pick up from the last time it was played. After every move from either player, the database should update to reflect the newest move.
+
+After implementing the database add a unittest file and coverage test.
+
+sqlite3 documentation:
+https://docs.python.org/3/library/sqlite3.html
+
+
