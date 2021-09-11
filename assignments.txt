@@ -70,7 +70,7 @@ template needed to render to 'player1_connect.html', and set status to whatever 
 endpoint /p2Join: This endpoint handles the joining of player2 set player 2's color and the return endpoint should be 'p2Join.html' and the status should be set
 to player 2's color
 
-endpoint /move1: The frontend will send a POST request with the attempted move of player1. The POST request will send a JSON object in the form {'column' : 'col#'} where col# can be col1 - col6. Your job is to verify that it is a valid move, and update your backend
+endpoint /move1: The frontend will send a POST request with the attempted move of player1. The POST request will send a JSON object in the form {'column' : 'col#'} where col# can be col1 - col7. Your job is to verify that it is a valid move, and update your backend
 board to match the frontend board. If the move is invalid (user tried to insert into a filled column or make a move when it wasn't their turn) return in the following format:
 
 jsonify(move=<current_board>, invalid = True, reason = <Why this is invalid>, winner = <current_winner>).
