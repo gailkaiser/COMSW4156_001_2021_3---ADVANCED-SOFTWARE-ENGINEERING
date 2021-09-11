@@ -37,7 +37,7 @@ begin playing with the hopes that one player wins. The Rules are as follows:
 4. The first person to connect 4 tokens in a row in any direction (vertically, horizontally, or diagonally) wins the game.
 5. If all spaces are used up the game is a draw.
 
-Start by cloning the assignment repository from https://github.com/Programming-Systems-Lab/4156-PublicAssignment/
+Start by cloning the assignment repository from https://github.com/gailkaiser/COMSW4156_001_2021_3---ADVANCED-SOFTWARE-ENGINEERING
 To open the assignment in Visual Studio Code in the left sidebar there is a button that looks like 2 pages. Click on that button and select "Add Folder"
 then find go to the location where you cloned the repo and click on the "skeleton" folder. The skeleton folder is where the starter code for all of your assignments will be located. Once you open the skeleton folder in visual studio this will allow you to switch through multiple files quickly as the project workspace gets bigger.
 
