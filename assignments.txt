@@ -22,9 +22,9 @@ Now we need to download some libraries.
 
 In your terminal of choice enter the following commands
 ''' 
-python3 - m pip install flask"
-python3 - m pip install coverage
-python3 - m pip install flake8
+python3 -m pip install flask"
+python3 -m pip install coverage
+python3 -m pip install flake8
 '''
 This will install the packages needed to use flask endpoints, check code coverage of unit testing, and help us spot bugs.
 
