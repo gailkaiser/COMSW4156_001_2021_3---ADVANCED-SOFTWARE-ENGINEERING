@@ -22,7 +22,7 @@ Now we need to download some libraries.
 
 In your terminal of choice enter the following commands
 ''' 
-python3 -m pip install flask"
+python3 -m pip install flask
 python3 -m pip install coverage
 python3 -m pip install flake8
 '''
@@ -118,6 +118,8 @@ This bugs.txt file will identify all of the lines and files that have potential 
 
 Correct implementation will create a blank bugs.txt file since there would be no bugs
 
+Make sure the outputs from the testing and bug checker tools are included in your repository.
+
 Documentation for coverage and flake8 if you are interested:
 https://coverage.readthedocs.io/en/coverage-5.5/ 
 https://flake8.pycqa.org/en/latest/
@@ -136,6 +138,8 @@ remaining_moves which is type INT.
 When a game starts it should pick up from the last time it was played. After every move from either player, the database should update to reflect the newest move.
 
 After implementing the database add a unittest file and run the coverage tests.
+
+Make sure the outputs from the testing and bug checker tools are included in your repository.
 
 sqlite3 documentation:
 https://docs.python.org/3/library/sqlite3.html
