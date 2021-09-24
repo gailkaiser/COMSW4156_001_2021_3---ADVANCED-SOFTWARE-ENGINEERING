@@ -120,6 +120,24 @@ Correct implementation will create a blank bugs.txt file since there would be no
 
 Make sure the outputs from the testing and bug checker tools are included in your repository.
 
+Additional Instructions for unit tests:
+1. You need to create a new branch <assignment2 or part2> on top of your existing branch and add your unit tests. 
+2. You are allowed to modify, refactor and fix bugs in your existing code during this assignment. 
+3. Make sure your line and branch coverage in Gameboard.py are close to 100% -- also, most of your application logic is expected to be in Gameboard.py, if not please refactor.
+4. For every test case please add a brief 1-line comment about the test case and also try to use meaningful names for functions. 
+For example:
+ def test_winning_move_horizontal(self):
+	# Checks if there is a winning move in horizontal direction
+
+
+These are the bare minimum test case scenarios that you need to include:
+1. Happy path for correct move
+2. Invalid move - not current player's turn
+3. Invalid move - winner already declared
+4. Invalid move - draw (tie)
+5. Invalid move - current column is filled
+6. Happy path for winning move in each of horizontal, vertical, positive/negative slope diagonal
+
 Documentation for coverage and flake8 if you are interested:
 https://coverage.readthedocs.io/en/coverage-5.5/ 
 https://flake8.pycqa.org/en/latest/
